@@ -52,16 +52,18 @@ typed as (
         case
             when price_id = 'price_monthly' then 50.0
             when price_id = 'price_annual'  then 300.0 / 12.0
-        end as mrr_usd,
+        end as plan_monthly_price_usd,
         
         case
             when price_id = 'price_monthly' then 50.0 * 12.0
             when price_id = 'price_annual'  then 300.0
-        end as arr_usd
+        end as plan_annual_price_usd
         
     from renamed
     
 )
 
-select *
+select *,
+    case when is_active = 1 then plan_monthly_price_usd else 0 end as mrr_usd,
+    case when is_active = 1 then plan_annual_price_usd else 0 end as arr_usd
 from typed
