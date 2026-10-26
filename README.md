@@ -246,3 +246,11 @@ Or use any DuckDB client that can connect to a local .duckdb file.
 
 You can adapt, extend, and reuse this project freely in your own portfolio or learning path.
 If you fork it, consider keeping a link back to the original inspiration.
+
+## Metric contracts and integration boundary
+
+`mrr_usd` and `arr_usd` now include active subscriptions only. `plan_monthly_price_usd` / `plan_annual_price_usd` are nominal plan prices and must not be summed as recurring revenue. `mart_billing__current_revenue` exposes the current total. Trials and cancellations contribute zero. The demo assumes USD; it does not implement FX.
+
+The input does not provide contract duration, so ACV and TCV remain NULL rather than relabeling deal amount. CRM/billing/events are staged separately: an account identity bridge has not been supplied and no cross-source customer join is claimed. Product behavior remains a staging dataset until such a bridge is defined.
+
+Business regression tests check inactive MRR and missing contract terms.

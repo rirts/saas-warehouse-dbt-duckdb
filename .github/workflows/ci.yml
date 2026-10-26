@@ -7,6 +7,9 @@ on:
 jobs:
   dbt:
     runs-on: ubuntu-latest
+    env:
+      DBT_SEND_ANONYMOUS_USAGE_STATS: "false"
+      DO_NOT_TRACK: "1"
 
     steps:
       - name: Checkout

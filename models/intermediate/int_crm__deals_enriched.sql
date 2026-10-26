@@ -22,8 +22,8 @@ typed as (
         -- importes: usamos amount como base de todo
         try_cast(amount as double) as amount_original,
         try_cast(amount as double) as amount_company_currency,
-        try_cast(amount as double) as annual_contract_value,
-        try_cast(amount as double) as total_contract_value,
+        cast(null as double) as annual_contract_value,
+        cast(null as double) as total_contract_value,
 
         -- days_to_close "de fuente" (simplemente la diferencia en días)
         case
